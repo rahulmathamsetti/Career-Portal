@@ -1,0 +1,157 @@
+var express = require("express");
+var router = express.Router();
+
+const Job = require("../models/Jobs");
+const Application = require("../models/Applications");
+const Applicant = require("../models/Applicants");
+//GET request
+
+//get all applications for a job
+router.get("/job/:id", function(req, res) {
+    // Application.find({ job: req.params.id }, function(err, applications) {
+    //     if (err)
+    //         console.log(err);
+    //     else {
+    //         if(!applications.length) {
+    //             console.log("no applications");
+    //             res.send.status(200).json(applications);
+    //         }
+    //         else{
+    //             var response={};
+    //             for(const e of applications)
+    //             {
+    //                 var data={};
+    //                 data.status=e.status;
+    //                 Applicant.findById(e.applicant,function(err,user){
+    //                     if(err) console.log(err);
+    //                     else{
+    //                         data.applicant=user;
+    //                     }
+    //                 });
+    //                 response.push(data);
+    //             }
+    //             res.status(200).json(response);
+    //         }
+    //     }
+    // });
+    Job.findById(req.params.id,function(err,job){
+        var response=[];
+        if(err) console.log(err);
+        else{
+            console.log("job 1 ",job);
+            if(!job){
+                res.status(200).json(job);
+            }
+            else{
+                for(const e of job.applied)
+                {
+                    Application.findById(e.application_id)
+                    .populate('Applicant')
+                    .exec(function(err,application){
+                        if(err) console.log(err);
+                        else{
+                            res.status(200).json(application);
+                        }
+                    });
+                }
+                // for(const e of job.applied)
+                // {
+                //     console.log("job2",e.application_id);
+                //     var data={};
+                //     Application.findById(e.application_id,function(err,app){
+                //         if(err) console.log(err);
+                //         else{
+                //             console.log("app ",app);
+                //             data.status=app.status;
+                //             Applicant.findById(app.applicant,function(err,user){
+                //                 if(err) console.log(err);
+                //                 else{
+                //                     data.applicant=user;
+                //                     console.log("data",data);
+                //                     response.push(data);
+                //                     console.log("a");
+                //                     res.status(200).json(response);
+                //                 }
+                //                 console.log("b");
+                //             });
+                //             console.log("c");
+                //         }
+                //         console.log("d");
+                //     });
+                    // console.log("e");
+                    // Application.findById(e.application_id)
+                    // .then(app=>{data=app})
+                    // .catch(err=>console.log(err));
+                    // console.log(data,"applicant");
+                    // Applicant.findById(App.applicant)
+                    // .then(user=>data.applicant=user)
+                    // .catch(err=>console.log(err));
+                    // response.push(data);
+            }
+        }
+    });
+});
+
+router.post("/add/:id",(req,res)=>{
+    if(!req.body.applicant)
+    {
+        res.status(400).json({status:"no applicant id"});
+    }
+    else{
+        const job = req.params.id;
+        Job.findById(job,function(err,job){
+            if(err) console.log(err);
+            else{
+                console.log(job);
+                if(!job)
+                {
+                    res.status(400).json(response);
+                }
+                else{
+                    let app = new Application({
+                        job:req.params.id,
+                        applicant:req.body.applicant,
+                        status:"Active",
+                    });
+                    app.save();
+                    job.applied.push({application_id:app.id});
+                    job.save()
+                    .then(job=>console.log("JOB then",job))
+                    .catch(err=>console.log(err));
+                    res.status(200).json(app);
+                }
+            }
+        });
+    }
+
+});
+
+router.post("/update/:id",function(req, res) {
+    const fields = {};
+    if (req.body.applications) {
+      fields.applications = req.body.applications;
+    }
+    if (req.body.positions) {
+      fields.positions = req.body.positions;
+    }
+    if (req.body.deadline) {
+      fields.deadline = req.body.deadline;
+    }
+    Job.findByIdAndUpdate(req.params.id,{$set:fields},function(err,jobs){
+        if(err) console.log(err);
+        else{
+            res.json(jobs).status(200);
+        }
+    });
+});
+
+router.post("/delete/:id",function(req, res) {
+    Job.findByIdAndDelete(req.params.id,function(err,jobs){
+        if(err) console.log(err);
+        else{
+            req.json(jobs).status(200);
+        }
+    });
+});
+
+module.exports = router;
