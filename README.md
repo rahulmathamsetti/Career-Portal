@@ -1,8 +1,8 @@
 # MERN Stack Job Portal 
 
-Welcome to the MERN Stack Job Portal, an immersive project designed to master the art of full-stack development. This application harnesses the power of MongoDB, Express, React, and Node.js (MERN) to create a dynamic job portal that connects recruiters with applicants. 🌐👥
+Welcome to the MERN Stack Job Portal, an immersive project designed to master the art of full-stack development. This application harnesses the power of MongoDB, Express, React, and Node.js (MERN) to create a dynamic job portal that connects recruiters with applicants. 
 
-## Specifications 📝
+## Specifications 
 
 ### Users 
 
