@@ -1,27 +1,27 @@
-# MERN Stack Job Portal 🚀💼
+# MERN Stack Job Portal 
 
 Welcome to the MERN Stack Job Portal, an immersive project designed to master the art of full-stack development. This application harnesses the power of MongoDB, Express, React, and Node.js (MERN) to create a dynamic job portal that connects recruiters with applicants. 🌐👥
 
 ## Specifications 📝
 
-### Users 👤
+### Users 
 
 - **Types of Users**: Recruiters and Applicants.
 - **Common Features**: Registration and Login.
 - **Recruiter Details**: Name, Password, Email, Bio.
 - **Applicant Details**: Name, Password, Email, Rating, Education, Skills.
 
-### Jobs 💼
+### Jobs 
 
 - **Attributes**: Title, Recruiter, Applications, Vacancies, Deadline, Joining Date, Skills, Salary, Job Type, Duration, Rating.
 
-### Applications 📑
+### Applications 
 
 - **Details**: Application Date, Applicant, Job, Status, Recruiter, SOP, Job & Applicant Ratings.
 
-## Features ✨
+## Features 
 
-### For Job Applicant 🙋‍♂️🙋‍♀️
+### For Job Applicant 
 
 - [x] **Register & Login**: Begin your job hunt journey.
 - [x] **Edit Profile**: Keep your professional info up to date.
@@ -32,7 +32,7 @@ Welcome to the MERN Stack Job Portal, an immersive project designed to master th
 - [x] **Track Applications**: Stay updated on your application status.
 - [x] **Rate Jobs**: Share your experience.
 
-### For Recruiter 🕴️
+### For Recruiter 
 
 - [x] **Register & Login**: Connect with potential employees.
 - [x] **Edit Profile**: Showcase your company’s ethos.
@@ -42,14 +42,14 @@ Welcome to the MERN Stack Job Portal, an immersive project designed to master th
 - [x] **Manage Applicants**: Shortlist, reject, or accept candidates.
 - [x] **Rate Applicants**: Acknowledge outstanding candidates.
 
-## Tech Stack 🛠️
+## Tech Stack 
 
 - **Frontend**: React JS for dynamic UI, Bootstrap for styling.
 - **Backend**: Node JS & Express JS for robust server-side functions.
 - **Database**: MongoDB for flexible data storage.
 - **Authentication**: Secured with JWT.
 
-## Running the Project 🖥️
+## Running the Project 
 
 ### Start the Backend:
 
